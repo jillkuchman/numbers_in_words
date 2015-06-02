@@ -1,0 +1,74 @@
+<?php
+
+    class NumbersInWordsTest extends DrupalUnitTestCase {
+
+        public static function getInfo(){
+            return array(
+                'name' => 'Numeric Translator Unit Test',
+                'description' => 'Tests that numeric_translator function translates numbers into words.',
+                'group' => 'Epicodus Examples',
+            );
+        }
+
+        public function setUp(){
+            drupal_load('module', 'numbers_in_words');
+            parent::setUp();
+        }
+
+        function test_numeric_translator(){
+            $result = numeric_translator(0);
+            $message = 'An input of 0 returns zero.';
+            $this->assertIdentical($result, 'zero');
+
+            $result = numeric_translator(20);
+            $message = 'An input of 20 returns twenty.';
+            $this->assertIdentical($result, 'twenty');
+
+
+            $result = numeric_translator(21);
+            $message = 'An input of 21 returns twenty one.';
+            $this->assertIdentical($result, 'twenty one');
+
+            $result = numeric_translator(99);
+            $message = 'An input of 99 returns ninety nine.';
+            $this->assertIdentical($result, 'ninety nine');
+
+            $result = numeric_translator(324);
+            $message = 'An input of 324 returns three hundred twenty four.';
+            $this->assertIdentical($result, 'three hundred twenty four');
+
+            $result = numeric_translator(999);
+            $message = 'An input of 999 returns nine hundred ninety nine.';
+            $this->assertIdentical($result, 'nine hundred ninety nine');
+
+            $result = numeric_translator(900);
+            $message = 'An input of 900 returns nine hundred.';
+            $this->assertIdentical($result, 'nine hundred');
+
+            $result = numeric_translator(903);
+            $message = 'An input of 903 returns nine hundred three.';
+            $this->assertIdentical($result, 'nine hundred three');
+
+            $result = numeric_translator(1000);
+            $message = 'An input of 1000 returns one thousand.';
+            $this->assertIdentical($result, 'one thousand');
+
+            $result = numeric_translator(1542);
+            $message = 'An input of 1542 returns one thousand five hundred forty two.';
+            $this->assertIdentical($result, 'one thousand five hundred forty two');
+
+            $result = numeric_translator(999999);
+            $message = 'An input of 1542 returns one thousand five hundred forty two.';
+            $this->assertIdentical($result, 'one thousand five hundred forty two');
+
+            $result = numeric_translator(9999);
+            $message = 'An input of 1542 returns one thousand five hundred forty two.';
+            $this->assertIdentical($result, 'one thousand five hundred forty two');
+
+
+
+
+        }
+    }
+
+?>

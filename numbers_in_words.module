@@ -1,0 +1,103 @@
+<?php
+
+    function numeric_translator($input) {
+        $number_dictionary = array(
+            0 => 'zero',
+            1 => 'one',
+            2 => 'two',
+            3 => 'three',
+            4 => 'four',
+            5 => 'five',
+            6 => 'six',
+            7 => 'seven',
+            8 => 'eight',
+            9 => 'nine',
+            10 => 'ten',
+            11 => 'eleven',
+            12 => 'twelve',
+            13 => 'thirteen',
+            14 => 'fourteen',
+            15 => 'fifteen',
+            16 => 'sixteen',
+            17 => 'seventeen',
+            18 => 'eighteen',
+            19 => 'nineteen',
+            20 => 'twenty',
+            30 => 'thirty',
+            40 => 'forty',
+            50 => 'fifty',
+            60 => 'sixty',
+            70 => 'seventy',
+            80 => 'eighty',
+            90 => 'ninety',
+            100 => 'hundred',
+            1000 => 'thousand',
+            1000000 => 'million',
+            1000000000 => 'billion',
+            1000000000000 => 'trillion',
+        );
+
+        $output = '';
+        $output_array = array();
+        $input_array = str_split($input);
+        $input_length = count($input_array);
+
+        $modulo = $input_length % 3;
+        $chunks_of_three = floor($input_length / 3);
+
+        $greatest_hits = array_slice($input_array, $modulo);
+
+            $array_count = 0;
+        while (count($input_array)) {
+            $array_name = (string) $array_count;
+            $greatest_hits[$array_count] = array
+            $array_count++;
+        }
+
+
+
+
+        $input_remaining = $input;
+
+        if ($input_remaining === 0) {
+            $output = $number_dictionary[$input];
+            return $output;
+        }
+        $array_index = 0;
+        while ($input_remaining > 99) {
+
+            array_push($output_array, $number_dictionary[$input_array[$array_index]]);
+            array_push($output_array, $number_dictionary[pow(10, floor(log10($input_remaining)))]);
+            $subtract_value = $input_array[$array_index]*pow(10, floor(log10($input_remaining)));
+            $input_remaining -= $subtract_value;
+            $array_index ++;
+        }
+
+        $input_remaining_array = str_split($input_remaining);
+        $input_remaining_length = count($input_remaining_array);
+
+        if ($input_remaining > 20 && $input_remaining < 100 ) {
+            $count = $input_remaining_length;
+
+            foreach($input_remaining_array as $place) {
+                $exp = $count - 1;
+
+                array_push($output_array, $number_dictionary[$place*pow(10, $exp)]);
+
+                $count--;
+            }
+
+        }
+
+        if ($input_remaining < 21 && $input_remaining > 0) {
+            array_push($output_array, $number_dictionary[$input_remaining]);
+        }
+
+        $output = implode(' ', $output_array);
+
+
+
+
+        return $output;
+
+}

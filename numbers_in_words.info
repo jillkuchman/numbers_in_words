@@ -1,0 +1,7 @@
+name = Numbers in Words
+description = Translates numeric numbers to written words.
+package = Epicodus examples
+core = 7.x
+dependencies[] = simpletest
+files[] = numbers_in_words.test
+files[] = numbers_in_words.module
